@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const https = require('https');
 
 // Token del bot
-const token = '7221787026:AAFTsZMtpKOXy-e-XzICCh_ZxhLFcIDZ308';
+const token = '7431580998:AAG8q8GixFWZzwNGFeEiCZGIPsAOAf4h4AY';
 
 // Crear el bot
 const bot = new TelegramBot(token, { polling: true });
