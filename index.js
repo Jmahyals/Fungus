@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const https = require('https');
 
 // Token del bot
 const token = '7221787026:AAFTsZMtpKOXy-e-XzICCh_ZxhLFcIDZ308';
@@ -11,6 +12,21 @@ const bot = new TelegramBot(token, { polling: true });
 // Credenciales de Google Custom Search API
 const googleApiKey = 'AIzaSyBaeEYhHa20VJQvrvJrVHTPbAqRdbpIl90';  // Reemplaza con tu clave API de Google
 const searchEngineId = '24ca0546b4bfd475a';  // Reemplaza con tu ID de motor de búsqueda
+
+// URL de tu servidor en Render (asegúrate de usar la URL correcta)
+const serverUrl = 'https://fungus.onrender.com';
+
+// Función para hacer ping al servidor
+function pingServer() {
+  https.get(serverUrl, (res) => {
+    console.log(`Ping enviado: ${res.statusCode}`);
+  }).on('error', (e) => {
+    console.error(`Error al hacer ping: ${e.message}`);
+  });
+}
+
+// Enviar ping cada 25 minutos (1500000 ms)
+setInterval(pingServer, 840000);
 
 // Función para buscar en Wikipedia
 const searchWikipedia = async (query) => {
@@ -168,3 +184,4 @@ bot.on('message', (msg) => {
     bot.sendMessage(chatId, 'Hola, soy Fungus. Usa /wiki para buscar información en Wikipedia y Concepto.com o /search para buscar en Google.');
   }
 });
+  
